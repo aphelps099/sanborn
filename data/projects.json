@@ -1,0 +1,165 @@
+{
+  "projects": [
+    {
+      "id": "victorian-revival",
+      "name": "Victorian Revival",
+      "location": "Ferndale, CA",
+      "year": "2024",
+      "type": "Restoration",
+      "scope": "Full exterior restoration and interior structural repair",
+      "squareFeet": "2,400",
+      "description": "A century-old Victorian requiring extensive rot repair and period-appropriate restoration. Preserved original millwork while updating structural systems.",
+      "heroImage": "project-victorian-revival-hero.jpg",
+      "thumbnail": "project-victorian-revival-thumb.jpg",
+      "gallery": [
+        { "image": "project-victorian-revival-01.jpg", "caption": "Living room with restored original millwork" },
+        { "image": "project-victorian-revival-02.jpg", "caption": "Period staircase detail" },
+        { "image": "project-victorian-revival-03.jpg", "caption": "Hand-restored window trim" },
+        { "image": "project-victorian-revival-04.jpg", "caption": "Updated kitchen respecting original character" },
+        { "image": "project-victorian-revival-05.jpg", "caption": "Exterior detail work" },
+        { "image": "project-victorian-revival-06.jpg", "caption": "Home in context with Ferndale hills" }
+      ],
+      "clientQuote": "James understood the soul of this house. He didn't just fix it — he honored it."
+    },
+    {
+      "id": "concrete-redwood",
+      "name": "Concrete + Redwood",
+      "location": "Rio Dell, CA",
+      "year": "2023",
+      "type": "New Build",
+      "scope": "Custom foundation and timber framing",
+      "squareFeet": "1,800",
+      "description": "Contemporary addition combining exposed concrete foundation work with traditional redwood timber framing. Material honesty meets modern design.",
+      "heroImage": "project-concrete-redwood-hero.jpg",
+      "thumbnail": "project-concrete-redwood-thumb.jpg",
+      "gallery": [
+        { "image": "project-concrete-redwood-01.jpg", "caption": "Exposed concrete and timber junction" },
+        { "image": "project-concrete-redwood-02.jpg", "caption": "Redwood beam detail" },
+        { "image": "project-concrete-redwood-03.jpg", "caption": "Foundation formwork precision" },
+        { "image": "project-concrete-redwood-04.jpg", "caption": "Interior space with natural materials" },
+        { "image": "project-concrete-redwood-05.jpg", "caption": "Exterior context" },
+        { "image": "project-concrete-redwood-06.jpg", "caption": "Material texture close-up" }
+      ]
+    },
+    {
+      "id": "kitchen-reframe",
+      "name": "Kitchen Reframe",
+      "location": "Fortuna, CA",
+      "year": "2023",
+      "type": "Remodel",
+      "scope": "Complete kitchen renovation with structural modifications",
+      "squareFeet": "400",
+      "description": "Opened load-bearing wall to create flowing kitchen-dining space. Custom cabinetry built on-site with local maple.",
+      "heroImage": "project-kitchen-reframe-hero.jpg",
+      "thumbnail": "project-kitchen-reframe-thumb.jpg",
+      "gallery": [
+        { "image": "project-kitchen-reframe-01.jpg", "caption": "Open concept kitchen after" },
+        { "image": "project-kitchen-reframe-02.jpg", "caption": "Custom maple cabinetry" },
+        { "image": "project-kitchen-reframe-03.jpg", "caption": "Structural beam integration" },
+        { "image": "project-kitchen-reframe-04.jpg", "caption": "Detail of hardware and joinery" },
+        { "image": "project-kitchen-reframe-05.jpg", "caption": "Natural light throughout" },
+        { "image": "project-kitchen-reframe-06.jpg", "caption": "Connection to dining space" }
+      ]
+    },
+    {
+      "id": "hillside-foundation",
+      "name": "Hillside Foundation",
+      "location": "Ferndale, CA",
+      "year": "2024",
+      "type": "Concrete",
+      "scope": "Engineered retaining wall and foundation system",
+      "squareFeet": "N/A",
+      "description": "Complex hillside foundation requiring precision forming and structural engineering. Drainage integration and seismic considerations.",
+      "heroImage": "project-hillside-foundation-hero.jpg",
+      "thumbnail": "project-hillside-foundation-thumb.jpg",
+      "gallery": [
+        { "image": "project-hillside-foundation-01.jpg", "caption": "Stepped foundation on hillside" },
+        { "image": "project-hillside-foundation-02.jpg", "caption": "Formwork precision" },
+        { "image": "project-hillside-foundation-03.jpg", "caption": "Rebar and drainage detail" },
+        { "image": "project-hillside-foundation-04.jpg", "caption": "Finished concrete work" },
+        { "image": "project-hillside-foundation-05.jpg", "caption": "Retaining wall integration" },
+        { "image": "project-hillside-foundation-06.jpg", "caption": "Site context" }
+      ]
+    },
+    {
+      "id": "barn-conversion",
+      "name": "Barn Conversion",
+      "location": "Petrolia, CA",
+      "year": "2023",
+      "type": "Remodel",
+      "scope": "Historic barn conversion to modern studio space",
+      "squareFeet": "1,200",
+      "description": "Preserved the character of a 1940s dairy barn while creating a modern, insulated studio space. Exposed original framing.",
+      "heroImage": "project-barn-conversion-hero.jpg",
+      "thumbnail": "project-barn-conversion-thumb.jpg",
+      "gallery": [
+        { "image": "project-barn-conversion-01.jpg", "caption": "Preserved timber framing" },
+        { "image": "project-barn-conversion-02.jpg", "caption": "Original barn doors retained" },
+        { "image": "project-barn-conversion-03.jpg", "caption": "Modern interior respecting history" },
+        { "image": "project-barn-conversion-04.jpg", "caption": "Natural light from original openings" },
+        { "image": "project-barn-conversion-05.jpg", "caption": "Detail of connection points" },
+        { "image": "project-barn-conversion-06.jpg", "caption": "Rural context" }
+      ]
+    },
+    {
+      "id": "coastal-deck",
+      "name": "Coastal Deck",
+      "location": "Trinidad, CA",
+      "year": "2024",
+      "type": "Addition",
+      "scope": "Weather-resistant deck with ocean views",
+      "squareFeet": "600",
+      "description": "Designed for coastal weather exposure. Marine-grade fasteners, proper drainage, and elevated construction for longevity.",
+      "heroImage": "project-coastal-deck-hero.jpg",
+      "thumbnail": "project-coastal-deck-thumb.jpg",
+      "gallery": [
+        { "image": "project-coastal-deck-01.jpg", "caption": "Deck with ocean views" },
+        { "image": "project-coastal-deck-02.jpg", "caption": "Weather-resistant construction details" },
+        { "image": "project-coastal-deck-03.jpg", "caption": "Integrated seating" },
+        { "image": "project-coastal-deck-04.jpg", "caption": "Hardware and fastener detail" },
+        { "image": "project-coastal-deck-05.jpg", "caption": "Connection to existing structure" },
+        { "image": "project-coastal-deck-06.jpg", "caption": "Coastal context" }
+      ]
+    },
+    {
+      "id": "craftsman-exterior",
+      "name": "Craftsman Exterior",
+      "location": "Eureka, CA",
+      "year": "2023",
+      "type": "Restoration",
+      "scope": "Exterior siding replacement and trim restoration",
+      "squareFeet": "2,800",
+      "description": "Complete exterior restoration of 1920s Craftsman. Matched original siding patterns and restored decorative elements.",
+      "heroImage": "project-craftsman-exterior-hero.jpg",
+      "thumbnail": "project-craftsman-exterior-thumb.jpg",
+      "gallery": [
+        { "image": "project-craftsman-exterior-01.jpg", "caption": "Restored Craftsman facade" },
+        { "image": "project-craftsman-exterior-02.jpg", "caption": "Detail of decorative brackets" },
+        { "image": "project-craftsman-exterior-03.jpg", "caption": "Period-appropriate siding" },
+        { "image": "project-craftsman-exterior-04.jpg", "caption": "Window trim detail" },
+        { "image": "project-craftsman-exterior-05.jpg", "caption": "Front porch restoration" },
+        { "image": "project-craftsman-exterior-06.jpg", "caption": "Neighborhood context" }
+      ]
+    },
+    {
+      "id": "modern-addition",
+      "name": "Modern Addition",
+      "location": "Arcata, CA",
+      "year": "2024",
+      "type": "Addition",
+      "scope": "Contemporary addition to 1960s ranch",
+      "squareFeet": "800",
+      "description": "Clean-lined modern addition that respects but doesn't mimic the original structure. Large windows, simple detailing.",
+      "heroImage": "project-modern-addition-hero.jpg",
+      "thumbnail": "project-modern-addition-thumb.jpg",
+      "gallery": [
+        { "image": "project-modern-addition-01.jpg", "caption": "Contemporary addition exterior" },
+        { "image": "project-modern-addition-02.jpg", "caption": "Interior connection between old and new" },
+        { "image": "project-modern-addition-03.jpg", "caption": "Window wall detail" },
+        { "image": "project-modern-addition-04.jpg", "caption": "Clean interior lines" },
+        { "image": "project-modern-addition-05.jpg", "caption": "Transition detail" },
+        { "image": "project-modern-addition-06.jpg", "caption": "Addition in context" }
+      ]
+    }
+  ]
+}

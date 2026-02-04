@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sanborn Design - Image Placeholder Generator</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      padding: 40px;
+      background: #f5f5f5;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 8px;
+    }
+    h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      color: #666;
+      margin-bottom: 40px;
+    }
+    .placeholder {
+      margin-bottom: 40px;
+      padding: 20px;
+      background: #f9f9f9;
+      border-left: 4px solid #2a2a2a;
+    }
+    .placeholder h3 {
+      margin-top: 0;
+      font-size: 18px;
+    }
+    .placeholder-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .placeholder-item {
+      background: #e0e0e0;
+      padding: 20px;
+      text-align: center;
+      border-radius: 4px;
+      font-size: 12px;
+      color: #666;
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .placeholder-item strong {
+      display: block;
+      margin-bottom: 10px;
+      color: #2a2a2a;
+      font-size: 14px;
+    }
+    .dimension {
+      display: block;
+      font-size: 11px;
+      color: #999;
+      margin-top: 5px;
+    }
+    .hero {
+      aspect-ratio: 16/9;
+    }
+    .portrait {
+      aspect-ratio: 3/4;
+    }
+    .landscape {
+      aspect-ratio: 4/3;
+    }
+    .status {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .status-missing {
+      background: #ffe0e0;
+      color: #c00;
+    }
+    .status-completed {
+      background: #e0ffe0;
+      color: #0a0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Sanborn Design</h1>
+    <p class="subtitle">Image Placeholder Reference — All images below are required for site launch</p>
+
+    <!-- Homepage -->
+    <div class="placeholder">
+      <h3>Homepage <span class="status status-missing">Missing</span></h3>
+      <p>Required images for homepage sections</p>
+      <div class="placeholder-grid">
+        <div class="placeholder-item hero">
+          <strong>hero-main.jpg</strong>
+          <span class="dimension">2400×1600px</span>
+        </div>
+        <div class="placeholder-item portrait">
+          <strong>project-victorian-revival-thumb.jpg</strong>
+          <span class="dimension">800×1067px</span>
+        </div>
+        <div class="placeholder-item portrait">
+          <strong>project-concrete-redwood-thumb.jpg</strong>
+          <span class="dimension">800×1067px</span>
+        </div>
+        <div class="placeholder-item portrait">
+          <strong>project-kitchen-reframe-thumb.jpg</strong>
+          <span class="dimension">800×1067px</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Work Page -->
+    <div class="placeholder">
+      <h3>Work Gallery <span class="status status-missing">Missing</span></h3>
+      <p>All project thumbnail images (8 total)</p>
+      <div class="placeholder-grid">
+        <div class="placeholder-item portrait">
+          <strong>project-hillside-foundation-thumb.jpg</strong>
+          <span class="dimension">800×1067px</span>
+        </div>
+        <div class="placeholder-item portrait">
+          <strong>project-barn-conversion-thumb.jpg</strong>
+          <span class="dimension">800×1067px</span>
+        </div>
+        <div class="placeholder-item portrait">
+          <strong>project-coastal-deck-thumb.jpg</strong>
+          <span class="dimension">800×1067px</span>
+        </div>
+        <div class="placeholder-item portrait">
+          <strong>project-craftsman-exterior-thumb.jpg</strong>
+          <span class="dimension">800×1067px</span>
+        </div>
+        <div class="placeholder-item portrait">
+          <strong>project-modern-addition-thumb.jpg</strong>
+          <span class="dimension">800×1067px</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Victorian Revival Project -->
+    <div class="placeholder">
+      <h3>Project: Victorian Revival <span class="status status-missing">Missing</span></h3>
+      <p>Hero image + 6 gallery images</p>
+      <div class="placeholder-grid">
+        <div class="placeholder-item hero">
+          <strong>project-victorian-revival-hero.jpg</strong>
+          <span class="dimension">2400×1350px (16:9)</span>
+        </div>
+        <div class="placeholder-item landscape">
+          <strong>project-victorian-revival-01.jpg</strong>
+          <span class="dimension">1600×1200px</span>
+        </div>
+        <div class="placeholder-item portrait">
+          <strong>project-victorian-revival-02.jpg</strong>
+          <span class="dimension">1200×1600px</span>
+        </div>
+        <div class="placeholder-item landscape">
+          <strong>project-victorian-revival-03.jpg</strong>
+          <span class="dimension">1600×1200px</span>
+        </div>
+        <div class="placeholder-item landscape">
+          <strong>project-victorian-revival-04.jpg</strong>
+          <span class="dimension">1600×1200px</span>
+        </div>
+        <div class="placeholder-item portrait">
+          <strong>project-victorian-revival-05.jpg</strong>
+          <span class="dimension">1200×1600px</span>
+        </div>
+        <div class="placeholder-item landscape">
+          <strong>project-victorian-revival-06.jpg</strong>
+          <span class="dimension">1600×1200px</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- About Page -->
+    <div class="placeholder">
+      <h3>About Page <span class="status status-missing">Missing - CRITICAL</span></h3>
+      <p>Portrait of James Sanborn (required for About page)</p>
+      <div class="placeholder-grid">
+        <div class="placeholder-item portrait">
+          <strong>about-james-portrait.jpg</strong>
+          <span class="dimension">1200×1600px</span>
+          <span style="color: #c00; margin-top: 10px; font-weight: 600;">★ Priority Image</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Assets -->
+    <div class="placeholder">
+      <h3>Brand Assets <span class="status status-completed">Completed</span></h3>
+      <p>Logo files are in place</p>
+      <div style="margin-top: 20px;">
+        <p>✓ sanborn1.svg<br>✓ sanborn1@2x.png</p>
+      </div>
+    </div>
+
+    <hr style="margin: 40px 0; border: none; border-top: 1px solid #e0e0e0;">
+
+    <h3>Summary</h3>
+    <p><strong>Minimum Images Required for Launch:</strong> 58+</p>
+    <p><strong>Currently Available:</strong> 2 (logo files only)</p>
+    <p><strong>Status:</strong> Site structure complete, awaiting photography</p>
+
+    <p style="margin-top: 30px; padding: 20px; background: #fff3cd; border-left: 4px solid #ffc107; font-size: 14px;">
+      <strong>Next Step:</strong> Schedule photo shoot to capture priority images (hero image, featured project thumbnails, James portrait, and Victorian Revival gallery). See IMAGE-REQUIREMENTS.md for complete specifications and photography direction.
+    </p>
+
+  </div>
+
+</body>
+</html>
