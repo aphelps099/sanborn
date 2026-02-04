@@ -1,215 +1,887 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sanborn Design - Simple. Sophisticated. Construction.</title>
-  <meta name="description" content="Architecture-trained craftsmanship for Northern California homes. Sanborn Design brings design expertise and precision construction to Humboldt County.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanborn Design | Simple. Sophisticated. Construction.</title>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --fog-white: #F7F6F3;
+            --redwood: #8B4513;
+            --redwood-light: #A65D2E;
+            --concrete: #6B6B6B;
+            --charcoal: #1A1A1A;
+            --ferndale-cream: #EDE8DF;
+            --soft-line: #E0DCD4;
+            --black: #0D0D0D;
+        }
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="./assets/css/reset.css">
-  <link rel="stylesheet" href="./assets/css/main.css">
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--fog-white);
+            color: var(--charcoal);
+            line-height: 1.5;
+            overflow-x: hidden;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Typography - Swiss Minimalist */
+        h1, h2, h3 {
+            font-family: 'Satoshi', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        .label {
+            font-family: 'General Sans', sans-serif;
+            font-size: 0.6875rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav.scrolled {
+            background: var(--fog-white);
+            border-bottom: 1px solid var(--soft-line);
+        }
+
+        /* SVG Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+
+        .logo svg {
+            height: 48px;
+            width: auto;
+            fill: var(--fog-white);
+            transition: fill 0.3s ease;
+        }
+
+        nav.scrolled .logo svg {
+            fill: var(--charcoal);
+        }
+
+        /* Logo animation */
+        .logo svg path,
+        .logo svg rect {
+            opacity: 0;
+            animation: logoFadeIn 0.6s ease-out forwards;
+        }
+
+        .logo svg path:nth-child(1) { animation-delay: 0.1s; }
+        .logo svg path:nth-child(2) { animation-delay: 0.15s; }
+        .logo svg path:nth-child(3) { animation-delay: 0.2s; }
+        .logo svg path:nth-child(4) { animation-delay: 0.25s; }
+        .logo svg rect:nth-child(5) { animation-delay: 0.3s; }
+        .logo svg rect:nth-child(6) { animation-delay: 0.35s; }
+        .logo svg path:nth-child(7) { animation-delay: 0.4s; }
+        .logo svg path:nth-child(8) { animation-delay: 0.45s; }
+
+        @keyframes logoFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(4px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'General Sans', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--fog-white);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        nav.scrolled .nav-links a {
+            color: var(--charcoal);
+        }
+
+        .nav-links a:hover {
+            opacity: 0.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 3rem 2rem;
+            overflow: hidden;
+        }
+
+        .hero-image-placeholder {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: var(--black);
+        }
+
+        /* Subtle grain texture */
+        .hero-image-placeholder::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: 0.4;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        .hero-content {
+            max-width: 900px;
+            animation: fadeUp 0.8s ease-out;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            color: var(--fog-white);
+            line-height: 0.95;
+            margin-bottom: 2rem;
+            font-weight: 900;
+            letter-spacing: -0.04em;
+        }
+
+        .hero-subtitle {
+            font-family: 'General Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--fog-white);
+            opacity: 0.7;
+            max-width: 380px;
+            letter-spacing: 0.01em;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            color: var(--fog-white);
+            opacity: 0.5;
+            animation: float 2.5s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(6px); }
+        }
+
+        .scroll-indicator svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 6rem 2rem;
+            background: var(--fog-white);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 3rem;
+        }
+
+        .section-label {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+        }
+
+        .section-number {
+            color: var(--concrete);
+        }
+
+        .section-title {
+            font-family: 'Satoshi', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--charcoal);
+        }
+
+        .view-all {
+            font-family: 'General Sans', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--charcoal);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .view-all:hover {
+            opacity: 0.6;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            position: relative;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .project-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-card:nth-child(2) { transition-delay: 0.1s; }
+        .project-card:nth-child(3) { transition-delay: 0.2s; }
+
+        .project-image {
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            background: var(--ferndale-cream);
+            position: relative;
+        }
+
+        .project-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--black);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover .project-image::after {
+            opacity: 0.08;
+        }
+
+        /* Minimal placeholder patterns */
+        .project-image-1 {
+            background: linear-gradient(135deg, #D4CFC5 0%, #C4BFB5 100%);
+        }
+
+        .project-image-2 {
+            background: linear-gradient(135deg, #C9C4BA 0%, #B9B4AA 100%);
+        }
+
+        .project-image-3 {
+            background: linear-gradient(135deg, #BEB9AF 0%, #AEAA9F 100%);
+        }
+
+        .project-info h3 {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin-bottom: 0.375rem;
+            letter-spacing: -0.01em;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .project-location {
+            font-family: 'General Sans', sans-serif;
+            font-size: 0.8125rem;
+            color: var(--concrete);
+        }
+
+        .project-type {
+            color: var(--concrete);
+        }
+
+        /* Quote Section */
+        .quote-section {
+            padding: 6rem 2rem;
+            background: var(--ferndale-cream);
+        }
+
+        .quote-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .quote-wrapper.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        blockquote {
+            font-family: 'Satoshi', sans-serif;
+            font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+            font-weight: 500;
+            line-height: 1.35;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        blockquote::before {
+            content: '"';
+        }
+
+        blockquote::after {
+            content: '"';
+        }
+
+        .quote-attribution {
+            font-family: 'General Sans', sans-serif;
+            color: var(--concrete);
+            font-size: 0.8125rem;
+        }
+
+        /* Approach Section */
+        .approach {
+            padding: 6rem 2rem;
+            background: var(--fog-white);
+        }
+
+        .approach-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .approach-intro {
+            position: sticky;
+            top: 6rem;
+        }
+
+        .approach-intro h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.03em;
+        }
+
+        .approach-intro p {
+            font-family: 'General Sans', sans-serif;
+            color: var(--concrete);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+
+        .approach-items {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .approach-item {
+            padding: 2rem 0;
+            border-top: 1px solid var(--soft-line);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .approach-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .approach-item:last-child {
+            border-bottom: 1px solid var(--soft-line);
+        }
+
+        .approach-header {
+            display: flex;
+            align-items: baseline;
+            gap: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .approach-number {
+            color: var(--concrete);
+            min-width: 1.5rem;
+        }
+
+        .approach-item h3 {
+            font-size: 1.125rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+
+        .approach-item p {
+            font-family: 'General Sans', sans-serif;
+            color: var(--concrete);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            margin-left: 3rem;
+            max-width: 480px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background: var(--black);
+            color: var(--fog-white);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 4rem;
+            max-width: 1100px;
+        }
+
+        .contact-left h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.03em;
+        }
+
+        .contact-tagline {
+            font-family: 'General Sans', sans-serif;
+            font-size: 0.9375rem;
+            color: rgba(247, 246, 243, 0.6);
+            max-width: 360px;
+            line-height: 1.6;
+        }
+
+        .contact-right {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding-top: 0.5rem;
+        }
+
+        .contact-block {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .contact-block-label {
+            color: rgba(247, 246, 243, 0.4);
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-block a {
+            font-family: 'Satoshi', sans-serif;
+            color: var(--fog-white);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-block a:hover {
+            opacity: 0.7;
+        }
+
+        .contact-block p {
+            font-family: 'General Sans', sans-serif;
+            color: rgba(247, 246, 243, 0.6);
+            font-size: 0.875rem;
+        }
+
+        .contact-license {
+            margin-top: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(247, 246, 243, 0.1);
+        }
+
+        .contact-license p {
+            font-family: 'General Sans', sans-serif;
+            font-size: 0.75rem;
+            color: rgba(247, 246, 243, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            padding: 1.5rem 2rem;
+            background: var(--black);
+            border-top: 1px solid rgba(247, 246, 243, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer .logo svg {
+            height: 32px;
+            fill: var(--fog-white);
+            opacity: 0.5;
+        }
+
+        footer p {
+            font-family: 'General Sans', sans-serif;
+            font-size: 0.6875rem;
+            color: rgba(247, 246, 243, 0.3);
+            letter-spacing: 0.02em;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .approach-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .approach-intro {
+                position: static;
+            }
+
+            .approach-item p {
+                margin-left: 0;
+                margin-top: 0.5rem;
+            }
+
+            .approach-header {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.25rem;
+            }
+
+            .logo svg {
+                height: 40px;
+            }
+
+            .hero {
+                padding: 2.5rem 1.25rem;
+            }
+
+            .projects {
+                padding: 4rem 1.25rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .quote-section {
+                padding: 4rem 1.25rem;
+            }
+
+            .approach {
+                padding: 4rem 1.25rem;
+            }
+
+            .contact {
+                padding: 4rem 1.25rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .scroll-indicator {
+                display: none;
+            }
+
+            footer {
+                padding: 1.25rem;
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .section-header {
+                flex-direction: column;
+                gap: 0.75rem;
+                align-items: flex-start;
+            }
+        }
+
+        /* Menu toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 20px;
+            height: 1.5px;
+            background: var(--fog-white);
+            margin: 4px 0;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled .menu-toggle span {
+            background: var(--charcoal);
+        }
+    </style>
 </head>
 <body>
-
-  <!-- Navigation -->
-  <nav class="nav">
-    <div class="nav-container">
-      <a href="./index.html" class="nav-logo-link">
-        <img src="./assets/images/sanborn1.svg" alt="Sanborn Design" class="nav-logo">
-      </a>
-      <ul class="nav-menu">
-        <li><a href="./index.html" class="nav-link">Home</a></li>
-        <li><a href="./work/index.html" class="nav-link">Work</a></li>
-        <li><a href="./approach/index.html" class="nav-link">Approach</a></li>
-        <li><a href="./about/index.html" class="nav-link">About</a></li>
-        <li><a href="./contact/index.html" class="nav-link">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <img
-      src="./assets/images/hero-main.jpg"
-      alt="Sanborn Design craftsmanship"
-      class="hero-background"
-    />
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1 class="tagline">
-        Simple.<br>
-        Sophisticated.<br>
-        Construction.
-      </h1>
-    </div>
-  </section>
-
-  <!-- Featured Projects Section -->
-  <section class="section-lg">
-    <div class="container">
-      <div class="text-center mb-xl">
-        <span class="label">Selected Work</span>
-        <h2>Recent Projects</h2>
-        <p class="intro-text">Architecture-trained craftsmanship for Northern California homes.</p>
-      </div>
-
-      <div class="grid-3">
-        <!-- Project 1: Victorian Revival -->
-        <a href="./work/victorian-revival/index.html" class="project-card">
-          <img
-            src="./assets/images/projects/project-victorian-revival-thumb.jpg"
-            alt="Victorian Revival"
-            class="project-card-image"
-            loading="lazy"
-          />
-          <div class="label project-card-type">Restoration</div>
-          <h3 class="project-card-title">Victorian Revival</h3>
-          <p class="project-card-location">Ferndale, CA</p>
+    <nav id="mainNav">
+        <a href="/" class="logo">
+            <svg viewBox="0 0 449.33 336.84" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                    <path d="M381.69,140.51c-34.63,1.25-62.29,29.78-62.48,64.52-.18,34.5,26.78,63.39,61.43,65.21,34.89,1.84,63.32-23.28,68.69-57.64v-14c-5.03-34.14-32.94-59.34-67.64-58.09Z"/>
+                    <path d="M213.25,100.62c42.39.14,76.94,24.85,96.3,61.56,1.34,2.54,2.56,4.59,4.27,6.85l.03-168.57-30.28-.26L107.56,0C71.95-.04,40.78,13.53,20.14,42.73,8.2,59.62.31,78.99.3,100.4l96.04-.17,116.92.39Z"/>
+                    <path d="M101.92,211.25c-45.5-1.11-81.13-27.57-100.62-68.01l-.04,168.34,94.08.14,117.84.09c55.12-1.38,99.67-45.09,101.44-100.72l-188.72.08-23.98.08Z"/>
+                    <path d="M110.59,206.55l203.36-.64c-2.26-54.81-45.72-99.79-100.89-99.94L0,105.37c1.61,60.47,51.55,101.37,110.59,101.18Z"/>
+                    <rect x="318.58" y="70.6" width="129.76" height="65.23"/>
+                    <rect x="318.58" y=".6" width="129.76" height="65.23"/>
+                    <path d="M65.18,1.19l-62.88-.12.12,62.78C14.25,35.43,35.61,13.82,65.18,1.19Z"/>
+                    <path d="M297.71,274.11c-21.49,27.52-53.16,42.71-87.46,42.72l-208.98.03v19.02c.08.32.14.65.22.97h445.03s.08-62.77.08-62.77l-148.88.04Z"/>
+                </g>
+            </svg>
         </a>
+        <ul class="nav-links">
+            <li><a href="#work">Work</a></li>
+            <li><a href="#approach">Approach</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="menu-toggle" aria-label="Menu">
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
 
-        <!-- Project 2: Concrete + Redwood -->
-        <a href="./work/concrete-redwood/index.html" class="project-card">
-          <img
-            src="./assets/images/projects/project-concrete-redwood-thumb.jpg"
-            alt="Concrete + Redwood"
-            class="project-card-image"
-            loading="lazy"
-          />
-          <div class="label project-card-type">New Build</div>
-          <h3 class="project-card-title">Concrete + Redwood</h3>
-          <p class="project-card-location">Rio Dell, CA</p>
+    <section class="hero">
+        <div class="hero-image-placeholder"></div>
+        <div class="hero-content">
+            <h1>Simple.<br>Sophisticated.<br>Construction.</h1>
+            <p class="hero-subtitle">Architecture-trained craftsmanship in Humboldt County.</p>
+        </div>
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <section class="projects" id="work">
+        <div class="section-header">
+            <div class="section-label">
+                <span class="label section-number">01</span>
+                <span class="section-title">Selected Work</span>
+            </div>
+            <a href="#contact" class="view-all">Get in Touch</a>
+        </div>
+        <div class="projects-grid">
+            <article class="project-card">
+                <div class="project-image project-image-1"></div>
+                <div class="project-info">
+                    <h3>Victorian Revival</h3>
+                    <div class="project-meta">
+                        <span class="project-location">Ferndale</span>
+                        <span class="label project-type">Restoration</span>
+                    </div>
+                </div>
+            </article>
+            <article class="project-card">
+                <div class="project-image project-image-2"></div>
+                <div class="project-info">
+                    <h3>Concrete + Redwood</h3>
+                    <div class="project-meta">
+                        <span class="project-location">Rio Dell</span>
+                        <span class="label project-type">New Build</span>
+                    </div>
+                </div>
+            </article>
+            <article class="project-card">
+                <div class="project-image project-image-3"></div>
+                <div class="project-info">
+                    <h3>Kitchen Reframe</h3>
+                    <div class="project-meta">
+                        <span class="project-location">Fortuna</span>
+                        <span class="label project-type">Remodel</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="quote-section">
+        <div class="quote-wrapper">
+            <blockquote>James doesn't just build—he sees. He understood what we wanted before we could articulate it.</blockquote>
+            <p class="quote-attribution">Sarah & Michael, Ferndale</p>
+        </div>
+    </section>
+
+    <section class="approach" id="approach">
+        <div class="approach-grid">
+            <div class="approach-intro">
+                <h2>One builder.<br>One project<br>at a time.</h2>
+                <p>Every detail considered. No crew you've never met. When you work with Sanborn, you get James—and his full attention.</p>
+            </div>
+            <div class="approach-items">
+                <div class="approach-item">
+                    <div class="approach-header">
+                        <span class="label approach-number">01</span>
+                        <h3>Design-First</h3>
+                    </div>
+                    <p>Trained by a Bay Area architect—his father—James brings a designer's eye to every build. Before picking up a hammer, he sees the finished space.</p>
+                </div>
+                <div class="approach-item">
+                    <div class="approach-header">
+                        <span class="label approach-number">02</span>
+                        <h3>Honest Materials</h3>
+                    </div>
+                    <p>Redwood. Concrete. Douglas fir. We build with what this place is made of. Materials that age with character.</p>
+                </div>
+                <div class="approach-item">
+                    <div class="approach-header">
+                        <span class="label approach-number">03</span>
+                        <h3>Built to Last</h3>
+                    </div>
+                    <p>We're not interested in trends. We build what endures—structurally, aesthetically, and practically.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-grid">
+            <div class="contact-left">
+                <h2>Let's talk about your project.</h2>
+                <p class="contact-tagline">Whether you're planning a new build, restoration, or addition—start with a conversation.</p>
+            </div>
+            <div class="contact-right">
+                <div class="contact-block">
+                    <span class="label contact-block-label">Email</span>
+                    <a href="mailto:James@sanborndesign.com">James@sanborndesign.com</a>
+                </div>
+                <div class="contact-block">
+                    <span class="label contact-block-label">Phone</span>
+                    <a href="tel:7079539567">707 953 9567</a>
+                </div>
+                <div class="contact-block">
+                    <span class="label contact-block-label">Location</span>
+                    <p>Ferndale, California</p>
+                    <p>Serving Humboldt County</p>
+                </div>
+                <div class="contact-license">
+                    <p>CA General B. Contractor #1087525</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <a href="/" class="logo">
+            <svg viewBox="0 0 449.33 336.84" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                    <path d="M381.69,140.51c-34.63,1.25-62.29,29.78-62.48,64.52-.18,34.5,26.78,63.39,61.43,65.21,34.89,1.84,63.32-23.28,68.69-57.64v-14c-5.03-34.14-32.94-59.34-67.64-58.09Z"/>
+                    <path d="M213.25,100.62c42.39.14,76.94,24.85,96.3,61.56,1.34,2.54,2.56,4.59,4.27,6.85l.03-168.57-30.28-.26L107.56,0C71.95-.04,40.78,13.53,20.14,42.73,8.2,59.62.31,78.99.3,100.4l96.04-.17,116.92.39Z"/>
+                    <path d="M101.92,211.25c-45.5-1.11-81.13-27.57-100.62-68.01l-.04,168.34,94.08.14,117.84.09c55.12-1.38,99.67-45.09,101.44-100.72l-188.72.08-23.98.08Z"/>
+                    <path d="M110.59,206.55l203.36-.64c-2.26-54.81-45.72-99.79-100.89-99.94L0,105.37c1.61,60.47,51.55,101.37,110.59,101.18Z"/>
+                    <rect x="318.58" y="70.6" width="129.76" height="65.23"/>
+                    <rect x="318.58" y=".6" width="129.76" height="65.23"/>
+                    <path d="M65.18,1.19l-62.88-.12.12,62.78C14.25,35.43,35.61,13.82,65.18,1.19Z"/>
+                    <path d="M297.71,274.11c-21.49,27.52-53.16,42.71-87.46,42.72l-208.98.03v19.02c.08.32.14.65.22.97h445.03s.08-62.77.08-62.77l-148.88.04Z"/>
+                </g>
+            </svg>
         </a>
+        <p>© 2025</p>
+    </footer>
 
-        <!-- Project 3: Kitchen Reframe -->
-        <a href="./work/kitchen-reframe/index.html" class="project-card">
-          <img
-            src="./assets/images/projects/project-kitchen-reframe-thumb.jpg"
-            alt="Kitchen Reframe"
-            class="project-card-image"
-            loading="lazy"
-          />
-          <div class="label project-card-type">Remodel</div>
-          <h3 class="project-card-title">Kitchen Reframe</h3>
-          <p class="project-card-location">Fortuna, CA</p>
-        </a>
-      </div>
+    <script>
+        // Nav scroll effect
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 80);
+        });
 
-      <div class="text-center mt-xl">
-        <a href="./work/index.html" class="btn">View All Projects</a>
-      </div>
-    </div>
-  </section>
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
-  <!-- Testimonial Section -->
-  <section class="bg-cream">
-    <div class="testimonial">
-      <blockquote class="testimonial-quote">
-        "James understood the soul of this house. He didn't just fix it — he honored it."
-      </blockquote>
-      <cite class="testimonial-author">— Sarah Mitchell, Victorian Restoration Client</cite>
-    </div>
-  </section>
+        document.querySelectorAll('.project-card, .quote-wrapper, .approach-item').forEach(el => {
+            observer.observe(el);
+        });
 
-  <!-- Approach Preview Section -->
-  <section class="section-lg">
-    <div class="container">
-      <div class="text-center mb-xl">
-        <span class="label">How We Work</span>
-        <h2>Design-First Construction</h2>
-      </div>
-
-      <div class="grid-3">
-        <!-- Principle 1 -->
-        <div>
-          <h4 class="mb-md">Architecture-Trained Eye</h4>
-          <p>
-            Trained by a retired Bay Area architect, we bring design understanding to every build.
-            It's not just about what goes where — it's about why.
-          </p>
-        </div>
-
-        <!-- Principle 2 -->
-        <div>
-          <h4 class="mb-md">Material Honesty</h4>
-          <p>
-            Good materials, used well. We let wood be wood, concrete be concrete. No faking,
-            no shortcuts, no trends that will look dated in five years.
-          </p>
-        </div>
-
-        <!-- Principle 3 -->
-        <div>
-          <h4 class="mb-md">Small by Choice</h4>
-          <p>
-            We stay small to stay involved. Every project gets direct attention, not a rotating
-            crew. You work with us from first conversation to final walkthrough.
-          </p>
-        </div>
-      </div>
-
-      <div class="text-center mt-xl">
-        <a href="./approach/index.html" class="link-arrow">Learn more about our approach</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section class="bg-dark section-lg">
-    <div class="container-narrow text-center">
-      <h2 class="mb-md">Let's Talk About Your Project</h2>
-      <p class="intro-text mb-xl">
-        Based in Ferndale, serving Humboldt County and the North Coast.
-      </p>
-
-      <div class="contact-info" style="align-items: center;">
-        <div class="contact-item">
-          <div class="contact-item-value">
-            <a href="mailto:james@sanborndesign.com">james@sanborndesign.com</a>
-          </div>
-        </div>
-
-        <div class="contact-item">
-          <div class="contact-item-value">
-            <a href="tel:+17075551234">(707) 555-1234</a>
-          </div>
-        </div>
-
-        <div class="contact-item">
-          <div class="contact-item-value">Ferndale, California</div>
-        </div>
-      </div>
-
-      <div class="mt-xl">
-        <a href="./contact/index.html" class="btn btn-light">Get in Touch</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <img src="./assets/images/sanborn1.svg" alt="Sanborn Design" class="footer-logo">
-
-        <div class="footer-text">
-          CA General B. Contractor #1087525
-        </div>
-
-        <div class="footer-text">
-          &copy; 2024 Sanborn Design. All rights reserved.
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Scripts -->
-  <script src="./assets/js/main.js"></script>
-
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href'))?.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
