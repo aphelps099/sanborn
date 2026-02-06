@@ -144,10 +144,34 @@ Location: Ferndale, California
 
 ---
 
+## Portfolio Submission System
+
+The Work section supports **dynamic portfolio loading** from a Google Sheet, powered by Google Forms.
+
+**How it works:**
+1. Clients (or you) submit projects via a Google Form with an image upload
+2. Responses go to a Google Sheet where you mark items as approved
+3. The website fetches approved items from the sheet and renders them automatically
+
+**Setup:** See [PORTFOLIO-SETUP.md](PORTFOLIO-SETUP.md) for the full step-by-step guide.
+
+**Configuration:** Edit the `PORTFOLIO_CONFIG` object in `index.html` (near the bottom) with your Google Sheet ID and Form URL.
+
+**Features:**
+- Dynamic project cards from Google Sheets
+- Google Drive image integration
+- Approval workflow (TRUE/FALSE column in the spreadsheet)
+- Lightbox for viewing project images
+- Optional "Submit a Project" link for clients
+- Falls back to default placeholder cards if no sheet is configured
+
+---
+
 ## Status
 
 ✅ Site structure complete
-⚠️ Needs real photography for project cards
+✅ Portfolio submission system (Google Forms + Sheets + Drive)
+⚠️ Needs real photography for project cards (or use the portfolio form!)
 ⚠️ Needs real hero background image
 
 Currently using gradient placeholders for projects and solid black for hero.

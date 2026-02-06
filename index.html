@@ -685,6 +685,119 @@
         nav.scrolled .menu-toggle span {
             background: var(--charcoal);
         }
+
+        /* Portfolio images */
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(13, 13, 13, 0.92);
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 900px;
+            width: 100%;
+            cursor: default;
+        }
+
+        .lightbox-content img {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            display: block;
+        }
+
+        .lightbox-caption {
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .lightbox-caption h3 {
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: var(--fog-white);
+            margin-bottom: 0.25rem;
+        }
+
+        .lightbox-caption p {
+            font-family: 'General Sans', sans-serif;
+            font-size: 0.875rem;
+            color: rgba(247, 246, 243, 0.6);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -2.5rem;
+            right: 0;
+            background: none;
+            border: none;
+            color: var(--fog-white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+            padding: 0.25rem;
+            line-height: 1;
+        }
+
+        .lightbox-close:hover {
+            opacity: 1;
+        }
+
+        /* Submit project link */
+        .submit-project {
+            font-family: 'General Sans', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--concrete);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+            border: 1px solid var(--soft-line);
+            padding: 0.5rem 1rem;
+            display: inline-block;
+        }
+
+        .submit-project:hover {
+            opacity: 0.6;
+        }
+
+        .section-header-actions {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        @media (max-width: 600px) {
+            .section-header-actions {
+                flex-direction: column;
+                gap: 0.75rem;
+                align-items: flex-start;
+            }
+        }
     </style>
 </head>
 <body>
@@ -733,7 +846,10 @@
                 <span class="label section-number">01</span>
                 <span class="section-title">Selected Work</span>
             </div>
-            <a href="#contact" class="view-all">Get in Touch</a>
+            <div class="section-header-actions">
+                <a href="#" id="submitProjectLink" class="submit-project" style="display:none;" target="_blank" rel="noopener">Submit a Project</a>
+                <a href="#contact" class="view-all">Get in Touch</a>
+            </div>
         </div>
         <div class="projects-grid">
             <article class="project-card">
@@ -853,6 +969,18 @@
         <p>© 2025</p>
     </footer>
 
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" aria-label="Close">&times;</button>
+            <img src="" alt="" id="lightboxImg">
+            <div class="lightbox-caption">
+                <h3 id="lightboxTitle"></h3>
+                <p id="lightboxDesc"></p>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Nav scroll effect
         const nav = document.getElementById('mainNav');
@@ -882,6 +1010,228 @@
                 });
             });
         });
+
+        // =============================================
+        // PORTFOLIO: Google Sheets Integration
+        // =============================================
+        // Configure these values after setting up your Google Form + Sheet.
+        // See PORTFOLIO-SETUP.md for step-by-step instructions.
+
+        const PORTFOLIO_CONFIG = {
+            // Paste your Google Sheet ID here (the long string from the sheet URL)
+            sheetId: '',
+
+            // Name of the sheet tab (Google Forms default is "Form Responses 1")
+            sheetName: 'Form Responses 1',
+
+            // Google Form URL — shown as "Submit a Project" link on the site
+            formUrl: '',
+
+            // Column positions in the spreadsheet (0-indexed)
+            // Default layout matches the Google Form described in PORTFOLIO-SETUP.md:
+            //   A=Timestamp, B=Project Name, C=Location, D=Type, E=Description, F=Image, G=Approved
+            cols: {
+                name: 1,
+                location: 2,
+                type: 3,
+                description: 4,
+                image: 5,
+                approved: 6
+            }
+        };
+
+        // Convert Google Drive URLs to direct image URLs
+        function convertDriveUrl(url) {
+            if (!url) return '';
+
+            // Not a Google Drive URL — return as-is
+            if (!url.includes('drive.google.com') && !url.includes('docs.google.com')) {
+                return url;
+            }
+
+            let fileId = null;
+
+            // Format: /file/d/FILE_ID/...
+            const fileMatch = url.match(/\/file\/d\/([^/]+)/);
+            if (fileMatch) fileId = fileMatch[1];
+
+            // Format: ?id=FILE_ID or &id=FILE_ID
+            if (!fileId) {
+                const idMatch = url.match(/[?&]id=([^&]+)/);
+                if (idMatch) fileId = idMatch[1];
+            }
+
+            // Format: /d/FILE_ID
+            if (!fileId) {
+                const dMatch = url.match(/\/d\/([^/]+)/);
+                if (dMatch) fileId = dMatch[1];
+            }
+
+            if (fileId) {
+                return 'https://drive.google.com/thumbnail?id=' + fileId + '&sz=w800';
+            }
+
+            return url;
+        }
+
+        // Fetch portfolio data from a published Google Sheet
+        async function fetchPortfolioData() {
+            if (!PORTFOLIO_CONFIG.sheetId) return [];
+
+            var url = 'https://docs.google.com/spreadsheets/d/' +
+                PORTFOLIO_CONFIG.sheetId +
+                '/gviz/tq?tqx=out:json&sheet=' +
+                encodeURIComponent(PORTFOLIO_CONFIG.sheetName);
+
+            try {
+                var response = await fetch(url);
+                var text = await response.text();
+
+                // Response is wrapped like: google.visualization.Query.setResponse({...});
+                var match = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\);?\s*$/);
+                if (!match) return [];
+
+                var data = JSON.parse(match[1]);
+                var rows = data.table.rows;
+                var cols = PORTFOLIO_CONFIG.cols;
+
+                return rows
+                    .filter(function(row) {
+                        var cell = row.c[cols.approved];
+                        if (!cell || cell.v == null) return false;
+                        var val = String(cell.v).toUpperCase();
+                        return val === 'TRUE' || val === 'YES' || val === 'APPROVED';
+                    })
+                    .map(function(row) {
+                        return {
+                            name: (row.c[cols.name] && row.c[cols.name].v) || 'Untitled Project',
+                            location: (row.c[cols.location] && row.c[cols.location].v) || '',
+                            type: (row.c[cols.type] && row.c[cols.type].v) || '',
+                            description: (row.c[cols.description] && row.c[cols.description].v) || '',
+                            imageUrl: convertDriveUrl((row.c[cols.image] && row.c[cols.image].v) || '')
+                        };
+                    });
+            } catch (err) {
+                console.warn('Portfolio: Could not load from Google Sheets.', err);
+                return [];
+            }
+        }
+
+        // Build a project card element
+        function createProjectCard(project, index) {
+            var article = document.createElement('article');
+            article.className = 'project-card';
+            article.style.transitionDelay = (index * 0.1) + 's';
+
+            var imageDiv = document.createElement('div');
+            imageDiv.className = 'project-image';
+
+            if (project.imageUrl) {
+                var img = document.createElement('img');
+                img.src = project.imageUrl;
+                img.alt = project.name;
+                img.loading = 'lazy';
+                imageDiv.appendChild(img);
+
+                // Click to open lightbox
+                imageDiv.style.cursor = 'pointer';
+                imageDiv.addEventListener('click', function() {
+                    openLightbox(project.imageUrl, project.name, project.description || project.location);
+                });
+            } else {
+                // Gradient placeholder for projects without images
+                imageDiv.style.background = 'linear-gradient(135deg, #D4CFC5 0%, #B9B4AA 100%)';
+            }
+
+            var infoDiv = document.createElement('div');
+            infoDiv.className = 'project-info';
+
+            var h3 = document.createElement('h3');
+            h3.textContent = project.name;
+
+            var metaDiv = document.createElement('div');
+            metaDiv.className = 'project-meta';
+
+            var locationSpan = document.createElement('span');
+            locationSpan.className = 'project-location';
+            locationSpan.textContent = project.location;
+
+            var typeSpan = document.createElement('span');
+            typeSpan.className = 'label project-type';
+            typeSpan.textContent = project.type;
+
+            metaDiv.appendChild(locationSpan);
+            metaDiv.appendChild(typeSpan);
+            infoDiv.appendChild(h3);
+            infoDiv.appendChild(metaDiv);
+
+            article.appendChild(imageDiv);
+            article.appendChild(infoDiv);
+
+            return article;
+        }
+
+        // Render portfolio projects into the grid
+        function renderPortfolio(projects) {
+            var grid = document.querySelector('.projects-grid');
+            if (!grid || projects.length === 0) return;
+
+            // Replace default placeholder cards with real data
+            grid.innerHTML = '';
+
+            projects.forEach(function(project, i) {
+                var card = createProjectCard(project, i);
+                grid.appendChild(card);
+            });
+
+            // Re-observe the new cards for scroll reveal
+            grid.querySelectorAll('.project-card').forEach(function(el) {
+                observer.observe(el);
+            });
+        }
+
+        // Lightbox
+        function openLightbox(src, title, desc) {
+            var lb = document.getElementById('lightbox');
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightboxImg').alt = title;
+            document.getElementById('lightboxTitle').textContent = title;
+            document.getElementById('lightboxDesc').textContent = desc || '';
+            lb.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            var lb = document.getElementById('lightbox');
+            lb.classList.remove('active');
+            document.getElementById('lightboxImg').src = '';
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) closeLightbox();
+        });
+
+        document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // Initialize portfolio
+        (async function() {
+            // Show the "Submit a Project" link if a form URL is configured
+            if (PORTFOLIO_CONFIG.formUrl) {
+                var link = document.getElementById('submitProjectLink');
+                link.href = PORTFOLIO_CONFIG.formUrl;
+                link.style.display = '';
+            }
+
+            var projects = await fetchPortfolioData();
+            if (projects.length > 0) {
+                renderPortfolio(projects);
+            }
+        })();
     </script>
 </body>
 </html>
